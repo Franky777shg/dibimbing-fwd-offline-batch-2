@@ -6,7 +6,9 @@ let input = [
 ]
 
 const analyzeUsers = (users) => {
-    // Write code here
+    let result = {}
+    result.totalUsers = users.length
+    return result
 }
 
 let hasil = analyzeUsers(input)
