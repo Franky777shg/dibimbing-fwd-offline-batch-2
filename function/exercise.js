@@ -7,7 +7,22 @@ let input = [
 
 const analyzeUsers = (users) => {
     let result = {}
+
+    // total user
     result.totalUsers = users.length
+
+    // total admin
+    let admins = users.filter(item => item.role === 'admin')
+    result.admins = admins.length
+    
+    // total users
+    let userList = users.filter(item => item.role === 'user')
+    result.users = userList.length
+
+    // average age
+    let totalAge = users.reduce((acc, item) => acc + item.age, 0)
+    result.averageAge = totalAge / users.length
+
     return result
 }
 
