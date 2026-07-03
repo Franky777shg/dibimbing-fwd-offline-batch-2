@@ -1,5 +1,28 @@
 // BUAT CLASS ShoppingCART DI SINI
-// ...
+class ShoppingCart {
+    constructor() {
+        this.cart = []
+    }
+
+    addItem(namaBarangnya, hargaBarangnya) {
+        this.cart.push({
+            name: namaBarangnya,
+            price: hargaBarangnya
+        })
+    }
+
+    removeItem(namaBarangnya) {
+        this.cart = this.cart.filter(item => item.name !== namaBarangnya)
+    }
+
+    showItems() {
+        return this.cart
+    }
+
+    getTotal() {
+        return this.cart.reduce((acc, item) => acc + item.price`, 0`)
+    }
+}
 
 const cart = new ShoppingCart();
 
