@@ -19,3 +19,9 @@ console.log(linearSearch(["apel", "mangga", "jeruk", "pisang"], "duren"))
 // }
 
 // recursive()
+
+// BUILT IN SEARCHING JS
+let arr = ["apel", "mangga", "jeruk", "pisang", "duren"]
+let searchForPisang = arr.find(item => item === "pisang")
+let searchForPisangIndex = arr.findIndex(item => item === "pisang")
+console.log(searchForPisangIndex)
