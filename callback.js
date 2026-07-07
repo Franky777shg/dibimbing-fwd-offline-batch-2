@@ -6,3 +6,7 @@ const fetchUser = (id, callback) => {
 }
 
 fetchUser(2, (user) => console.log(`User ditemukan: ${user.name}`))
+
+// intermezo string
+let nama = "Andi"
+console.log(`Halo ${nama}, saya mau berkenalan`) // Halo Andi, saya mau berkenalan
