@@ -11,7 +11,12 @@ let data = [
 
 const dataStudentProcessor = (dataStudent) => {
     dataStudent.forEach((item, index) => {
-        let rataRata = item.nilai.reduce((acc, hasilPerUjian) => acc + hasilPerUjian, 0) / item.nilai.length // [80, 90, 85].length
+        // Untuk mencari total nilai
+        let totalNilai = item.nilai.reduce((acc, element) => acc + element, 0)
+        // Untuk mencari ada berapa nilai ujian
+        let adaBerapaUjian = item.nilai.length
+        
+        let rataRata = totalNilai / adaBerapaUjian
         let grade = ""
 
         if (rataRata >= 90) {
