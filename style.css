@@ -1,5 +1,13 @@
 h1 {
-    color: teal«;
+    color: teal;
+}
+
+.ride-1 {
+    color: red !important;
+}
+
+#ride-2 {
+    color: darkgoldenrod;
 }
 
 .kotak-biru {
@@ -20,5 +28,12 @@ h1 {
     margin-top: 10px;
     width: 50px;
     height: 50px;
-    background-color: maroon;
+    background-color: #281C59;
+}
+
+.rgb-ex {
+    margin-top: 20px;
+    width: 50px;
+    height: 50px;
+    background-color: rgba(100, 50, 200, 0.5);
 }
