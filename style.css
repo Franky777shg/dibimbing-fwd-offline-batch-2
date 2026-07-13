@@ -1,39 +1,30 @@
-h1 {
-    color: teal;
+.fixed {
+    width: 80px;
+    height: 80px;
+    background-color: coral;
+    position: fixed;
+    left: 10px;
+    top: 45vh;
 }
 
-.ride-1 {
-    color: red !important;
-}
-
-#ride-2 {
-    color: darkgoldenrod;
-}
-
-.kotak-biru {
-    width: 50px;
-    height: 50px;
+.span2 {
     background-color: lightblue;
+    width: 100px;
+    display: inline-block;
 }
 
-.hero {
-    /* border-width: 5px;
-    border-style: double;
-    border-color: black; */
-    border: 10px solid black;
-    border-radius: 10%;
+.relative {
+    position: relative;
+    background-color: yellowgreen;
+    top: 50px;
+    left: 50px;
+    width: 70vw;
+    height: 50vh;
 }
 
-#kotak-merah {
-    margin-top: 10px;
-    width: 50px;
-    height: 50px;
-    background-color: #281C59;
-}
-
-.rgb-ex {
-    margin-top: 20px;
-    width: 50px;
-    height: 50px;
-    background-color: rgba(100, 50, 200, 0.5);
+.normal {
+    background-color: salmon;
+    width: 200px;
+    height: 200px;
+    border: 10px ridge black;
 }
