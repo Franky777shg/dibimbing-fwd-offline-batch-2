@@ -1,28 +1,41 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Netflix Indonesia - Watch TV Shows Online, Watch Movies Online</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Netflix Indonesia - Watch TV Shows Online, Watch Movies Online</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
+
 <body>
-    <header>
-        <b>NETFLIX</b>
-        <select>
-            <option>Bahasa Indonesia</option>
-            <option>English</option>
+  <div class="hero">
+    <!-- Top navigation -->
+    <header class="navbar">
+      <a href="#" class="logo">NETFLIX</a>
+      <div class="nav-actions">
+        <select aria-label="Language">
+          <option>English</option>
+          <option>Bahasa Indonesia</option>
         </select>
-        <button>Sign In</button>
+        <button class="btn btn-signin">Sign In</button>
+      </div>
     </header>
-    <main>
-        <center>
-            <h1>Unlimited movies, TV shows, and more</h1>
-            <b>Starts at IDR 54,000. Cancel anytime.</b>
-            <p>Ready to watch? Enter your email to create or restart your membership.</p>
-            <input type="email" placeholder="Email address">
-            <button>Get Started ></button>
-        </center>
+
+    <!-- Hero content -->
+    <main class="hero-content">
+      <h1>Unlimited movies, TV<br />shows, and more</h1>
+      <p class="tagline">Starts at IDR 54,000. Cancel anytime.</p>
+      <p class="cta-text">Ready to watch? Enter your email to create or restart your membership.</p>
+
+      <div class="signup">
+        <input type="email" id="email" placeholder=" Email address" />
+        <button class="btn btn-getstarted">
+          Get Started >
+        </button>
+      </div>
     </main>
+  </div>
 </body>
+
 </html>
