@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  <style type="text/tailwindcss">
+    /* @theme {
+      --color-kevin: #321E48;
+      --color-nathan: #FFDDB0;
+    } */
+     @layer components {
+      .teal-box {
+        @apply w-[50px] h-[50px] bg-teal-500
+      }
+     }
+  </style>
+</head>
+
+<body class="ps-5 pt-5">
+  <p class="text-2xl">Ini sizing pakai tailwind</p>
+  <p class="font-bold">Ini font weight pakai tailwind</p>
+  <div class="w-[80px] h-[80px] bg-red-500 ml-5 hover:bg-teal-500"></div>
+  <p class="text-teal-500 text-2xl sm:text-orange-500">Ini contoh responsive dengan tailwind</>
+  <div class="bg-kevin w-[80px] h-[80px] text-white">Ini custom warna</div>
+  <p class="text-nathan">Ini custom text color tailwind</p>
+  <div class="flex w-[300px] justify-around items-center h-[300px] bg-red-500">
+    <div class="teal-box">1</div>
+    <div class="teal-box">2</div>
+    <div class="teal-box">3</div>
+    <div class="teal-box">4</div>
+    <div class="teal-box">5</div>
+  </div>
+  <div class="w-[300px] h-[300px] bg-red-500 mt-8
+  grid grid-cols-3 gap-5">
+    <div class="bg-teal-500">1</div>
+    <div class="bg-teal-500">2</div>
+    <div class="bg-teal-500 row-span-2">3</div>
+    <div class="bg-teal-500 col-span-2">4</div>
+    <div class="bg-teal-500">5</div>
+    <div class="bg-teal-500">6</div>
+    <div class="bg-teal-500">7</div>
+  </div>
+</body>
+
+</html>
