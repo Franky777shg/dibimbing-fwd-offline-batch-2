@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  <style type="text/tailwindcss">
+    @custom-variant dark (
+      &:where(.dark, .dark *)
+    );
+    @layer components {
+      .blue-box {
+        @apply bg-blue-300 w-[80px] h-[80px] border
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- <p class="
+    text-red-500 
+    sm:text-blue-300 
+    sm:font-bold">
+    Ini responsive mengubah warna
+  </p> -->
+  <div class="flex flex-col sm:flex-row">
+    <div class="blue-box">1</div>
+    <div class="blue-box">2</div>
+    <div class="blue-box">3</div>
+  </div>
+
+  <div class="bg-red-200 w-[80px] h-[80px] mt-5 dark:bg-red-700 dark:text-white">Coba lihat aku</div>
+</body>
+
+</html>
