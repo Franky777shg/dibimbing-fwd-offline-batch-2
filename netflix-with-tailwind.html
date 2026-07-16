@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Netflix Indonesia - Watch TV Shows Online, Watch Movies Online</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+</head>
+
+<body class="bg-[url('./img-netflix.jpg')] font-[Arial]">
+    <div class="bg-black/70 min-h-screen">
+        <header class="flex justify-between px-[9vw] pt-[3vh] mb-[20vh]">
+            <b class="text-red-700 text-[2.5rem]">NETFLIX</b>
+            <div>
+                <select class="bg-transparent border border-gray-400 text-white w-[13vw] h-[30px] text-base mr-[15px]">
+                    <option>Bahasa Indonesia</option>
+                    <option>English</option>
+                </select>
+                <button class="
+                    bg-red-700 
+                    text-white 
+                    w-[5vw] 
+                    h-[30px] 
+                    text-base 
+                    rounded-sm 
+                    hover:cursor-pointer">
+                    Sign In
+                </button>
+            </div>
+        </header>
+        <main class="flex flex-col items-center text-center">
+            <h1 class="text-white text-[3.2rem] max-w-[40vw] mb-[2vh] font-bold">Unlimited movies, TV shows, and more
+            </h1>
+            <b class="text-white text-2xl mb-[4vh]">Starts at IDR 54,000. Cancel anytime.</b>
+            <p class="text-white mb-[2vh]">Ready to watch? Enter your email to create or restart your membership.</p>
+            <div class="flex gap-[10px]">
+                <input
+                    class="bg-transparent w-[25vw] h-[50px] text-base rounded-sm border border-gray-400 text-white ps-[10px]"
+                    type="email" placeholder="Email address">
+                <button class="bg-red-700 text-white h-[50px] w-[14vw] text-2xl rounded-sm">Get Started ></button>
+            </div>
+        </main>
+    </div>
+</body>
+
+</html>
