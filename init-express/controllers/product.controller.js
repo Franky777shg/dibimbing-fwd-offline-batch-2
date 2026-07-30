@@ -11,18 +11,18 @@ const products = [
 
 const getAllProducts = async (req, res) => {
     try {
-        const [data] = await pool.query('SELECT * FROM products')
+        const [ data ] = await pool.query('SELECT * FROM products')
         res.status(200).json(new SuccessResponse("Success get all products", data))
     } catch (err) {
         res.status(400).json({ message: err.message })
     }
 }
 
-const getProductById = (req, res) => {
+const getProductById = async (req, res) => {
     try {
         const { id } = req.params
-        const filtered = products.filter(item => item.id == id)
-        res.status(200).json(new SuccessResponse("Success get product by id", filtered[0]))
+        const [ data ] = await pool.query('select * from products where id_product = ?', [id])
+        res.status(200).json(new SuccessResponse("Success get product by id", data[0]))
     } catch (err) {
         res.status(400).json({ message: err.message })
     }
@@ -33,9 +33,9 @@ const getProductByNameOrPrice = (req, res) => {
         const { name, price } = req.query
 
         // Contoh penerapan error handling
-        if (!name) {
-            throw new Error("Name harus ada di query")
-        }
+        // if (!name) {
+        //     throw new Error("Name harus ada di query")
+        // }
         const filtered = products.filter(item => item.name.toLowerCase() === name || item.price === +price)
         res.status(200).json(new SuccessResponse("Success get product by name or price", filtered[0]))
     } catch (err) {
