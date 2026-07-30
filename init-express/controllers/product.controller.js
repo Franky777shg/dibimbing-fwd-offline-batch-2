@@ -31,8 +31,32 @@ const getProductByNameOrPrice = (req, res) => {
     })
 }
 
+const setCookie = (req, res) => {
+    res.cookie('session', req.body, {
+        httpOnly: true,
+        signed: true,
+        secure: true,
+        sameSite: 'lax',
+        maxAge: 60 * 60 * 1000
+    })
+    res.status(200).json({
+        message: "Set cookie telah berhasil",
+        data: null
+    })
+}
+
+const getCookie = (req, res) => {
+    const cookie = req.signedCookies.session
+    res.status(200).json({
+        message: "Berhasil get cookie",
+        data: cookie
+    })
+}
+
 module.exports = {
     getAllProducts,
     getProductById,
-    getProductByNameOrPrice
+    getProductByNameOrPrice,
+    setCookie,
+    getCookie
 }

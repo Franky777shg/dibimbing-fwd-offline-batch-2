@@ -1,9 +1,12 @@
 const express = require('express')
 const router = express.Router()
-const userController = require('../controllers/product.controller')
+const productController = require('../controllers/product.controller')
 
-router.get('/get-all', userController.getAllProducts)
-router.get('/get-by-id/:id', userController.getProductById)
-router.get('/get-by-name-or-price', userController.getProductByNameOrPrice)
+router.get('/get-all', productController.getAllProducts)
+router.get('/get-by-id/:id', productController.getProductById)
+router.get('/get-by-name-or-price', productController.getProductByNameOrPrice)
+router.post('/set', productController.setCookie)
+router.get('/get', productController.getCookie)
 
+// untuk mengexport router di atas yang sudah dibuat
 module.exports = router
