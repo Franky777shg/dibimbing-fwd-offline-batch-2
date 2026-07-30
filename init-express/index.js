@@ -5,6 +5,7 @@ const PORT = 3000
 
 // Import Router nya yang sudah di pisah
 const productRouter = require('./routes/product.route')
+const { getPool } = require('./utils/db')
 
 // cookie secret
 const COOKIE_SECRET = 'frengky12345'
@@ -20,6 +21,12 @@ app.get('/', (req, res) => {
 
 app.use('/products', productRouter)
 
-app.listen(PORT, () => {
-    console.log(`Yahoo API Running at PORT: ${PORT}!`)
+getPool()
+.then(() => {
+    app.listen(PORT, () => {
+        console.log(`Yahoo API Running at PORT: ${PORT}!`)
+    })
+})
+.catch((err) => {
+    console.log(err)
 })
