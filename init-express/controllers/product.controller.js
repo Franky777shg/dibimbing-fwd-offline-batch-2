@@ -1,3 +1,5 @@
+const customResponse = require('../utils/customResponse')
+
 const products = [
     { id: 1, name: 'Laptop', price: 12000000 },
     { id: 2, name: 'Mouse', price: 250000 },
@@ -7,19 +9,13 @@ const products = [
 ]
 
 const getAllProducts = (req, res) => {
-    res.status(200).json({
-        success: true,
-        data: products
-    })
+    res.status(200).json(new customResponse.SuccessResponse("Success get all products", products))
 }
 
 const getProductById = (req, res) => {
     const { id } = req.params
     const filtered = products.filter(item => item.id == id)
-    res.status(200).json({
-        success: true,
-        data: filtered[0]
-    })
+    res.status(200).json(new customResponse.SuccessResponse("Success get product by id", filtered[0]))
 }
 
 const getProductByNameOrPrice = (req, res) => {
