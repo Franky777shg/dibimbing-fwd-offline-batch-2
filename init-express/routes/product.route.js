@@ -5,8 +5,7 @@ const productController = require('../controllers/product.controller')
 router.get('/get-all', productController.getAllProducts)
 router.get('/get-by-id/:id', productController.getProductById)
 router.get('/get-by-name-or-price', productController.getProductByNameOrPrice)
-router.post('/set', productController.setCookie)
-router.get('/get', productController.getCookie)
+router.post('/add-product', productController.addProduct)
 
 // untuk mengexport router di atas yang sudah dibuat
 module.exports = router

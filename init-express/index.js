@@ -1,10 +1,12 @@
+require('dotenv').config({ quiet: true })
 const express = require('express')
 const cookieParser = require('cookie-parser')
 const app = express()
-const PORT = 3000
+const PORT = process.env.PORT_SERVER || 3000
 
 // Import Router nya yang sudah di pisah
 const productRouter = require('./routes/product.route')
+const cookieRouter = require('./routes/cookie.route')
 const { getPool } = require('./utils/db')
 
 // cookie secret
@@ -20,6 +22,7 @@ app.get('/', (req, res) => {
 })
 
 app.use('/products', productRouter)
+app.use('/cookie', cookieRouter)
 
 getPool()
 .then(() => {
