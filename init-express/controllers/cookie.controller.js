@@ -1,4 +1,4 @@
-const { SuccessResponse } = require('../utils/customResponse')
+const { CustomResponse } = require('../utils/customResponse')
 
 const setCookie = (req, res) => {
     try {
@@ -9,7 +9,7 @@ const setCookie = (req, res) => {
             sameSite: 'lax',
             maxAge: 60 * 60 * 1000
         })
-        res.status(200).json(new SuccessResponse("Set cookie success", req.body))
+        res.status(200).json(new CustomResponse("Set cookie success", req.body))
     } catch (err) {
         res.status(400).json({ message: err.message })
     }
@@ -18,7 +18,7 @@ const setCookie = (req, res) => {
 const getCookie = (req, res) => {
     try {
         const cookie = req.signedCookies.session
-        res.status(200).json(new SuccessResponse("Get cooki success", cookie))
+        res.status(200).json(new CustomResponse("Get cooki success", cookie))
     } catch (err) {
         res.status(400).json({ message: err.message })
     }
