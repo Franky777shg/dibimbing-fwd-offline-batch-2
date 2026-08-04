@@ -2,26 +2,26 @@ const { CustomResponse } = require('../utils/customResponse')
 const { pool } = require('../utils/db')
 const { validationResult } = require('express-validator')
 
-const getAllProducts = async (req, res) => {
+const getAllProducts = async (req, res, next) => {
     try {
         const [data] = await pool.query('SELECT * FROM products')
-        res.status(200).json(new CustomResponse("Success get all products", data))
+        res.status(200).json(new CustomResponse("Success get all products", datae))
     } catch (err) {
-        res.status(400).json(new CustomResponse(err.message, null))
+        next(err)
     }
 }
 
-const getProductById = async (req, res) => {
+const getProductById = async (req, res, next) => {
     try {
         const { id } = req.params
         const [data] = await pool.query('select * from products where id_product = ?', [id])
         res.status(200).json(new CustomResponse("Success get product by id", data))
     } catch (err) {
-        res.status(400).json({ message: err.message })
+        next(err)
     }
 }
 
-const getProductByNameOrPrice = async (req, res) => {
+const getProductByNameOrPrice = async (req, res, next) => {
     try {
         const { name, price } = req.query
 
@@ -32,31 +32,31 @@ const getProductByNameOrPrice = async (req, res) => {
         const [data] = await pool.query('select * from products where name = ? or price = ?', [name, price])
         res.status(200).json(new CustomResponse("Success get product by name or price", data[0]))
     } catch (err) {
-        res.status(400).json({ message: err.message })
+        next(err)
     }
 }
 
-const createProduct = async (req, res) => {
+const createProduct = async (req, res, next) => {
     try {
         const errors = validationResult(req)
         if (!errors.isEmpty()) {
             return res.status(400).json({ errors: errors.array() })
         }
-        
+
         const { name, price } = req.body
 
         const [result] = await pool.query('insert into products (name, price) values (?, ?)', [name, price])
         res.status(201).json(new CustomResponse("Success create product", { id_product: result.insertId, name, price }))
     } catch (err) {
-        res.status(400).json({ message: err.message })
+        next(err)
     }
 }
 
 // Daftar kolom yang boleh diubah, supaya key asing dari body tidak ikut masuk ke query
-const PRODUCT_COLUMNS = ['name', 'price']
 
-const editProduct = async (req, res) => {
+const editProduct = async (req, res, next) => {
     try {
+        const PRODUCT_COLUMNS = ['name', 'price']
         const { id } = req.params
 
         // Ambil hanya kolom yang dikirim user DAN terdaftar di PRODUCT_COLUMNS
@@ -86,11 +86,11 @@ const editProduct = async (req, res) => {
 
         res.status(200).json(new CustomResponse("Success update product", updatedData))
     } catch (err) {
-        res.status(400).json({ message: err.message })
+        next(err)
     }
 }
 
-const deleteProduct = async (req, res) => {
+const deleteProduct = async (req, res, next) => {
     try {
         const { id } = req.params
 
@@ -102,7 +102,7 @@ const deleteProduct = async (req, res) => {
 
         res.status(200).json(new CustomResponse("Success delete product", { id_product: id }))
     } catch (err) {
-        res.status(400).json({ message: err.message })
+        next(err)
     }
 }
 
