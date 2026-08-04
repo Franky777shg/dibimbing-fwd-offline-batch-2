@@ -1,5 +1,6 @@
 const { CustomResponse } = require('../utils/customResponse')
 const { pool } = require('../utils/db')
+const { validationResult } = require('express-validator')
 
 const getAllProducts = async (req, res) => {
     try {
@@ -25,9 +26,9 @@ const getProductByNameOrPrice = async (req, res) => {
         const { name, price } = req.query
 
         // Contoh penerapan error handling
-        // if (!name) {
-        //     throw new Error("Name harus ada di query")
-        // }
+        if (!name) {
+            throw new Error("Name harus ada di query")
+        }
         const [data] = await pool.query('select * from products where name = ? or price = ?', [name, price])
         res.status(200).json(new CustomResponse("Success get product by name or price", data[0]))
     } catch (err) {
@@ -37,11 +38,12 @@ const getProductByNameOrPrice = async (req, res) => {
 
 const createProduct = async (req, res) => {
     try {
-        const { name, price } = req.body
-
-        if (!name || !price) {
-            throw new Error("Name dan price harus diisi")
+        const errors = validationResult(req)
+        if (!errors.isEmpty()) {
+            return res.status(400).json({ errors: errors.array() })
         }
+        
+        const { name, price } = req.body
 
         const [result] = await pool.query('insert into products (name, price) values (?, ?)', [name, price])
         res.status(201).json(new CustomResponse("Success create product", { id_product: result.insertId, name, price }))
