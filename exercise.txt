@@ -1,0 +1,50 @@
+1. Buatlah function yang menghasilkan segitiga dengan jumlah baris n secara menurun.
+
+contoh 
+input: n = 4
+output:
+4321
+321
+21
+1
+
+input: n = 6
+output:
+654321
+54321
+4321
+321
+21
+1
+
+2. Buat fungsi yang bernama count_vowels untuk menghitung jumlah huruf vokal (a, i, u, e, o) yang muncul dalam sebuah string. 
+Fungsi ini menerima input berupa string tunggal dan mengembalikan jumlah total huruf vokal yang ada di dalam string tersebut (huruf besar dan kecil dihitung sama).
+
+contoh
+input: str = "Programming"
+ouput: 3, (o, a, i)
+
+input: str = "JAvascRipt GoOd"
+output: 5, (A, a, i, o, O)
+
+3. Diberikan sebuah bilangan bulat positif N sebagai input.
+Tugas Anda adalah membuat program yang menghitung jumlah (penjumlahan) seluruh bilangan genap dari 1 sampai dengan N.
+
+contoh
+input: 10
+output: 30 (2 + 4 + 6 + 8 + 10)
+
+input: 15 
+output: 56 (2 + 4 + 6 + 8 + 10 + 12 + 14)
+
+4. Diberikan sebuah bilangan bulat sebagai input. Tugas Anda adalah membuat program yang mengecek apakah bilangan tersebut bisa dibagi 3 atau tidak, lalu mencetak:
+
+"BISA" jika bilangan habis dibagi 3.
+"TIDAK BISA" jika bilangan tidak habis dibagi 3.
+
+contoh
+input: 6
+output: "BISA"
+
+input: 17
+output: "TIDAK BISA"
