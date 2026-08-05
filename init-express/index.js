@@ -7,6 +7,8 @@ const PORT = process.env.PORT_SERVER || 3000
 // Import Router nya yang sudah di pisah
 const productRouter = require('./routes/product.route')
 const cookieRouter = require('./routes/cookie.route')
+const authRouter = require('./routes/auth.route')
+
 const { getPool } = require('./utils/db')
 const { CustomResponse } = require('./utils/customResponse')
 
@@ -24,6 +26,7 @@ app.get('/', (req, res) => {
 
 app.use('/products', productRouter)
 app.use('/cookie', cookieRouter)
+app.use('/auth', authRouter)
 
 app.use((req, res) => {
     res.status(404).json(new CustomResponse("Route tidak ditemukan", null))
