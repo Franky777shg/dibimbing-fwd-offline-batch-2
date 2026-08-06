@@ -9,8 +9,10 @@ const productRouter = require('./routes/product.route')
 const cookieRouter = require('./routes/cookie.route')
 const authRouter = require('./routes/auth.route')
 
+// Import config
 const { getPool } = require('./utils/db')
 const { CustomResponse } = require('./utils/customResponse')
+const { connectRedis } = require('./utils/redis')
 
 // cookie secret
 const COOKIE_SECRET = 'frengky12345'
@@ -38,12 +40,12 @@ app.use((err, req, res, next) => {
     res.status(statusErr).json(new CustomResponse(err.message || "Internal server error"))
 })
 
-getPool()
+Promise.all([getPool(), connectRedis()])
 .then(() => {
     app.listen(PORT, () => {
         console.log(`Yahoo API Running at PORT: ${PORT}!`)
     })
 })
 .catch((err) => {
-    console.log(err)
+    console.log("Gagal connect ke MySQL / Redis: ", err.message)
 })

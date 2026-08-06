@@ -1,11 +1,30 @@
 const { CustomResponse } = require('../utils/customResponse')
 const { pool } = require('../utils/db')
 const { validationResult } = require('express-validator')
+const { getCache, setCache, deleteCache } = require('../utils/redis')
+
+const KEY_ALL_BOOK = 'book:all'
 
 const getAllProducts = async (req, res, next) => {
     try {
-        const [data] = await pool.query('SELECT * FROM products')
-        res.status(200).json(new CustomResponse("Success get all products", datae))
+        // kita check dulu ke dalam redis
+        const dataCache = await getCache(KEY_ALL_BOOK)
+
+        // kalau hit di redis
+        if (dataCache) {
+            return res.status(200).json(new CustomResponse(
+                "Berhasil get all book from redis",
+                dataCache
+            ))
+        }
+
+        // kalau miss dari redis, maka ambil datanya dari database
+        const [dataSql] = await pool.query('SELECT * FROM products')
+
+        // simpan data dari db ke redis agar request berikutnya data get all book sudah ada di redis
+        await setCache(KEY_ALL_BOOK, dataSql)
+
+        res.status(200).json(new CustomResponse("Success get all products", dataSql))
     } catch (err) {
         next(err)
     }
@@ -46,6 +65,10 @@ const createProduct = async (req, res, next) => {
         const { name, price } = req.body
 
         const [result] = await pool.query('insert into products (name, price) values (?, ?)', [name, price])
+
+        // // delete data di cache, karena sekarang data di db tidak sync dengan redis
+        await deleteCache(KEY_ALL_BOOK)
+
         res.status(201).json(new CustomResponse("Success create product", { id_product: result.insertId, name, price }))
     } catch (err) {
         next(err)
