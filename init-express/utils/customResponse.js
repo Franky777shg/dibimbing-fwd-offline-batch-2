@@ -1,4 +1,4 @@
-class SuccessResponse {
+class CustomResponse {
     constructor(message, data) {
         this.message = message
         this.data = data
@@ -6,5 +6,5 @@ class SuccessResponse {
 }
 
 module.exports = {
-    SuccessResponse
+    CustomResponse
 }
