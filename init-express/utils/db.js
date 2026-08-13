@@ -8,14 +8,14 @@ const pool = mysql.createPool({
     database: process.env.DB_NAME
 })
 
-async function getPool() {
-    const connection = await pool.getConnection()
-    connection.release()
-    console.log("Connected to MySQL!")
-    return pool
-}
+// async function getPool() {
+//     const connection = await pool.getConnection()
+//     connection.release()
+//     console.log("Connected to MySQL!")
+//     return pool
+// }
 
 module.exports = {
     pool,
-    getPool
+    // getPool
 }

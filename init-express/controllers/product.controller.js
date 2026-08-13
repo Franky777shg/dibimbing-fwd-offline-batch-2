@@ -1,10 +1,10 @@
-const { CustomResponse } = require('../utils/customResponse')
+const { SuccessResponse } = require('../utils/customResponse')
 const { pool } = require('../utils/db')
 
 const getAllProducts = async (req, res) => {
     try {
         const [data] = await pool.query('SELECT * FROM products')
-        res.status(200).json(new CustomResponse("Success get all products", data))
+        res.status(200).json(new SuccessResponse("Success get all products", data))
     } catch (err) {
         res.status(400).json({ message: err.message })
     }
@@ -14,7 +14,7 @@ const getProductById = async (req, res) => {
     try {
         const { id } = req.params
         const [data] = await pool.query('select * from products where id_product = ?', [id])
-        res.status(200).json(new CustomResponse("Success get product by id", data))
+        res.status(200).json(new SuccessResponse("Success get product by id", data))
     } catch (err) {
         res.status(400).json({ message: err.message })
     }
@@ -29,7 +29,7 @@ const getProductByNameOrPrice = async (req, res) => {
         //     throw new Error("Name harus ada di query")
         // }
         const [data] = await pool.query('select * from products where name = ? or price = ?', [name, price])
-        res.status(200).json(new CustomResponse("Success get product by name or price", data[0]))
+        res.status(200).json(new SuccessResponse("Success get product by name or price", data[0]))
     } catch (err) {
         res.status(400).json({ message: err.message })
     }
@@ -44,7 +44,7 @@ const createProduct = async (req, res) => {
         }
 
         const [result] = await pool.query('insert into products (name, price) values (?, ?)', [name, price])
-        res.status(201).json(new CustomResponse("Success create product", { id_product: result.insertId, name, price }))
+        res.status(201).json(new SuccessResponse("Success create product", { id_product: result.insertId, name, price }))
     } catch (err) {
         res.status(400).json({ message: err.message })
     }
@@ -82,7 +82,7 @@ const editProduct = async (req, res) => {
             updatedData[column] = values[index]
         })
 
-        res.status(200).json(new CustomResponse("Success update product", updatedData))
+        res.status(200).json(new SuccessResponse("Success update product", updatedData))
     } catch (err) {
         res.status(400).json({ message: err.message })
     }
@@ -98,7 +98,7 @@ const deleteProduct = async (req, res) => {
             throw new Error(`Product dengan id ${id} tidak ditemukan`)
         }
 
-        res.status(200).json(new CustomResponse("Success delete product", { id_product: id }))
+        res.status(200).json(new SuccessResponse("Success delete product", { id_product: id }))
     } catch (err) {
         res.status(400).json({ message: err.message })
     }
