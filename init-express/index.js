@@ -3,6 +3,7 @@ const express = require('express')
 const cookieParser = require('cookie-parser')
 const app = express()
 const PORT = process.env.PORT_SERVER || 3000
+const cors = require('cors')
 
 // Import Router nya yang sudah di pisah
 const productRouter = require('./routes/product.route')
@@ -15,6 +16,9 @@ const COOKIE_SECRET = 'frengky12345'
 
 // Ini untuk membuat express app kita bisa membaca data dari body
 app.use(express.json())
+// Ini untuk setup konfigurasi cors
+app.use(cors())
+
 // Middleware
 app.use(cookieParser(COOKIE_SECRET))
 
